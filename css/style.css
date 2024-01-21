@@ -6,14 +6,25 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: 24px 24px;
+        gap: 24px;
         flex-wrap: wrap;
         padding: 24px 156px;
+        margin: 0;
 }
-.gallery> li{
+.gallery> li>a>img{
     width: 360px;
         height: 200px;
         flex-shrink: 0;
-        background: url(<path-to-image>), lightgray 0px -0.018px / 125% 150.018% no-repeat;
         
+        
+}
+.gallery>li {
+    width: 360px;
+        height: 200px;
+}
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

@@ -75,8 +75,8 @@ const refs = document.querySelector(".gallery")
 
 function itemTemplate(images) {
     return images.map(image=> {
-        return `<li class="gallery-item">
-  <a class="gallery-link" href="${image.original} " download>
+        return `<li class="gallery-item"> 
+        <a class="gallery-link" href="${image.original} " download>
     <img
       class="gallery-image"
       src="${image.preview}"
