@@ -69,36 +69,13 @@ refs.addEventListener('click', onClickEvent);
 
 function onClickEvent(e) {
     
-if(e.target.nodeName!== "IMG")
-        return;    
-    const liElem = e.target.closest('li');
-    const id = liElem.dataset.description;
-  
+if(e.target.nodeName!== "IMG")  return;    
+    const liElem = e.target.closest('li');//отримуємо доступ до <li>
+    const id = liElem.dataset.description;//дістаємо опис необхідної картинки
 
-    const image = images.find(el => el.description === id);
-    console.log(image);
-
-    const { preview, original, description } = image;
-     const instance1 = basicLightbox.create(`
-	  <a class="gallery-link" href="${original} " download>
-    <img
-      class="gallery-image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-	 
- `,
-    {
-       closable: true,
-         className: '',
-        
-        onShow: (instance) => { },
-        onClose: (instance) => { }
-     }
-);
- instance1.show()  ;
+    const image = images.find(el => el.description === id);//шуаємо цю картинку в масиві
+    showPicture(image)//запускаємо функцію, що відкриває модальне вікно для знайденої картинки
+    
 }
 //========================Створюємо розмітку============================//
 function itemTemplate(images) {
@@ -119,4 +96,33 @@ const markup = itemTemplate(images)
 
 refs.innerHTML = markup;
 
-//========================================================================//
+//==========================Створрюємо функцію, що відповідає за модалку==============================================//
+function showPicture(image) {
+    const { preview, original, description } = image;
+    const instance1 = basicLightbox.create(`
+         <img src="${original}" width="800" height="600"
+    /> `,
+    {
+       closable: true,
+         className: '',
+        
+        onShow: (instance1) => {
+            console.log('Add Listener');
+            document.addEventListener('keydown', onModalClose)
+        },
+        onClose: (instance1) => {
+            console.log('Remove Listener');
+            document.removeEventListener('keydown', onModalClose)}
+     }
+);
+ instance1.show()  ;
+    
+function onModalClose(e) {
+    console.log(e.code);
+    if (e.code === 'Escape') {
+        instance1.close();
+    }
+}//закриваємо модальне вікно клавішею Escape
+}
+
+
