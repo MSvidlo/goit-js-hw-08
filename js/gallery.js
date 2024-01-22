@@ -63,30 +63,60 @@ const images = [
     description: "Lighthouse Coast Sea",
   },
 ];
-
+//========================================================================//
 const refs = document.querySelector(".gallery")
-// refs.addEventListener('click', onClickEvent);
+refs.addEventListener('click', onClickEvent);
 
-// function onClickEvent(e) {
-
+function onClickEvent(e) {
     
-// }
+if(e.target.nodeName!== "IMG")
+        return;    
+    const liElem = e.target.closest('li');
+    const id = liElem.dataset.description;
+  
 
+    const image = images.find(el => el.description === id);
+    console.log(image);
 
-function itemTemplate(images) {
-    return images.map(image=> {
-        return `<li class="gallery-item"> 
-        <a class="gallery-link" href="${image.original} " download>
+    const { preview, original, description } = image;
+     const instance1 = basicLightbox.create(`
+	  <a class="gallery-link" href="${original} " download>
     <img
       class="gallery-image"
-      src="${image.preview}"
-      data-source="${image.original}"
-      alt="${image.description}"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+	 
+ `,
+    {
+       closable: true,
+         className: '',
+        
+        onShow: (instance) => { },
+        onClose: (instance) => { }
+     }
+);
+ instance1.show()  ;
+}
+//========================Створюємо розмітку============================//
+function itemTemplate(images) {
+    return images.map(({preview,original,description})=> {
+        return `<li class="gallery-itemm" data-description="${description}"> 
+        <a class="gallery-link" href="${original} " download>
+    <img
+      class="gallery-image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
 </li>`;
 }).join('');
 }
-const murkup = itemTemplate(images)
+const markup = itemTemplate(images)
 
-refs.innerHTML = murkup;
+refs.innerHTML = markup;
+
+//========================================================================//
