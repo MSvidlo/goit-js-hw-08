@@ -108,7 +108,7 @@ function showPicture(image) {
          className: '',
         
         onShow: (instance1) => {
-            console.log('Add Listener');
+            console.log('Add Listener');//додаємо прослуховувача події клавіатури (onShow з бібліотеки)
             document.addEventListener('keydown', onModalClose);
 
             // Отримуємо елемент <img> у модальному вікні
@@ -118,7 +118,7 @@ function showPicture(image) {
         },
         onClose: (instance1) => {
             console.log('Remove Listener');
-            document.removeEventListener('keydown', onModalClose)}
+            document.removeEventListener('keydown', onModalClose)} //видаляємо прослуховувача події клавіатури (onClose з бібліотеки)
      }
     );
     
