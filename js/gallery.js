@@ -103,24 +103,24 @@ function showPicture(image) {
     const instance1 = basicLightbox.create(`
          <img src="${preview}" width="800" height="600" alt= "${description}"
     /> `,
-    {
-       closable: true,
-         className: '',
-        
-        onShow: (instance1) => {
-            console.log('Add Listener');//додаємо прослуховувача події клавіатури (onShow з бібліотеки)
-            document.addEventListener('keydown', onModalClose);
+        {
+            closable: true,
+            className: '',
+            onShow: (instance1) => {
+                //додаємо прослуховувача події клавіатури (onShow з бібліотеки)
+                document.addEventListener('keydown', onModalClose);
 
-            // Отримуємо елемент <img> у модальному вікні
-            const modalImg = instance1.element().querySelector('img');
-            // Змінюємо значення атрибуту src на original
-            modalImg.setAttribute('src', original);
-        },
-        onClose: (instance1) => {
-            console.log('Remove Listener');
-            document.removeEventListener('keydown', onModalClose)} //видаляємо прослуховувача події клавіатури (onClose з бібліотеки)
-     }
-    );
+                // Отримуємо елемент <img> у модальному вікні
+                const modalImg = instance1.element().querySelector('img');
+                // Змінюємо значення атрибуту src на original
+                modalImg.setAttribute('src', original)
+            },
+        
+            onClose: (instance1) => {
+                document.removeEventListener('keydown', onModalClose)
+            }
+        })
+         //видаляємо прослуховувача події клавіатури (onClose з бібліотеки);
     
     
        
