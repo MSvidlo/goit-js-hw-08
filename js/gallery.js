@@ -64,8 +64,8 @@ const images = [
   },
 ];
 //========================================================================//
-const refs = document.querySelector(".gallery")
-refs.addEventListener('click', onClickEvent);
+const galleryElement = document.querySelector(".gallery")
+galleryElement.addEventListener('click', onClickEvent);
 
 function onClickEvent(e) {
  e.preventDefault()   
@@ -94,7 +94,7 @@ function itemTemplate(images) {
 }
 const markup = itemTemplate(images)
 
-refs.innerHTML = markup;
+galleryElement.innerHTML = markup;
 
 //================Створрюємо функцію, що відповідає за модалку=============//
 
