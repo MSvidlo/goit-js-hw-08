@@ -101,7 +101,7 @@ galleryElement.innerHTML = markup;
 function showPicture(image) {
     const { preview, original, description } = image;
     const instance1 = basicLightbox.create(`
-         <img src="${preview}" width="800" height="600" alt= "${description}"
+         <img src="${original}" width="800" height="600" alt= "${description}"
     /> `,
         {
             closable: true,
@@ -110,10 +110,6 @@ function showPicture(image) {
                 //додаємо прослуховувача події клавіатури (onShow з бібліотеки)
                 document.addEventListener('keydown', onModalClose);
 
-                // Отримуємо елемент <img> у модальному вікні
-                const modalImg = instance1.element().querySelector('img');
-                // Змінюємо значення атрибуту src на original
-                modalImg.setAttribute('src', original)
             },
         
             onClose: (instance1) => {
